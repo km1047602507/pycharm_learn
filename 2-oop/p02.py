@@ -49,52 +49,53 @@ print("-" * 50)
 import random
 import math
 
-def line():
-    str_num = ''
-    for i in range(4):
-        j = random.randrange(97,123)
-        str_s = chr(j)
-        str_num = str_num + str_s
-    #print(str_num)
-    for m in range(8):
-        n = random.randrange(0,10)
-        str_num = str_num +str(n)
-    #print(str_num)
-    return str_num
+class GameNum():
+    def line(self):
+        str_num = ''
+        for i in range(4):
+            j = random.randrange(97,123)
+            str_s = chr(j)
+            str_num = str_num + str_s
+        #print(str_num)
+        for m in range(8):
+            n = random.randrange(0,10)
+            str_num = str_num +str(n)
+        #print(str_num)
+        return str_num
 
-source = 0
-total = 0
-def num_game():
-    while 1:
-        global source,total
 
-        num = int(input("请输入一个三位数："))
-        if num == -1:
-            break
-        random_num = random.randrange(100,1000)
-        print("num = {0},random_num = {1}".format(num,random_num))
-        if 100<=num<=999:
-            total += 1
-            print("输入%d次"%total)
-            if num > random_num:
-                print("百位数字是：{}  十位数字是：{}  个位数字是：{}".format(num//100,num//10%10,num%10))
-                print("你输入的数字比程序随机数大！")
-            elif num == random_num:
-                source += 1
-                print("恭喜您中奖了！您的分数为".source)
-                print("你中奖的概率是多少",source/total)
+    def num_game(self,total,source):
+        source = 0
+        total = 0
+        while 1:
+            num = int(input("请输入一个三位数："))
+            if num == -1:
+                break
+            random_num = random.randrange(100,1000)
+            print("num = {0},random_num = {1}".format(num,random_num))
+            if 100<=num<=999:
+                total += 1
+                print("输入%d次"%total)
+                if num > random_num:
+                    print("百位数字是：{}  十位数字是：{}  个位数字是：{}".format(num//100,num//10%10,num%10))
+                    print("你输入的数字比程序随机数大！")
+                elif num == random_num:
+                    source += 1
+                    print("恭喜您中奖了！您的分数为".source)
+                    print("你中奖的概率是多少",source/total)
+                else:
+                    for k in range(10):
+                        str_line = GameNum.line(0)
+                        with open('str_num.txt','a') as f:
+                            f.write(str_line + '\n')
+
             else:
-                for k in range(10):
-                    str_line = line()
-                    with open('str_num.txt','a') as f:
-                        f.write(str_line + '\n')
-
-        else:
-            print("您输入的数字有误，请重新输入！")
+                print("您输入的数字有误，请重新输入！")
 
 #程序入口（也叫调试入口）
 if __name__ == '__main__':
-    num_game()
-
+    source = 0
+    total = 0
+    GameNum.num_game(0,source,total)
 
 
