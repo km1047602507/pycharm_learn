@@ -1,6 +1,35 @@
-#Log日志
-color = ['red','yellow','green']
-for green in color:
-    print(green)
-    if color == 'green':
-        print("Green")
+'''import logging
+LOG_FORMAT = "%(asctime)s=====%(levelname)s=====%(message)s"
+logging.basicConfig(filename="keyman.log",level=logging.DEBUG,format=LOG_FORMAT)
+
+logging.debug("This is a debug log.")
+logging.info("This is a info log.")
+logging.info("This is a warning log.")
+
+
+logging.log(logging.DEBUG,"This is a debug log.")
+logging.log(logging.WARNING,"This is a debug log.")
+'''
+
+import logging
+import logging.handlers
+import datetime
+
+logger = logging.getLogger('mylogger')
+logger.setLevel(logging.DEBUG)
+
+rf_handler = logging.handlers.TimedRotatingFileHandler('all.log',when='midnight',interval=1,backupCount=7,atTime=None)
+rf_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+
+f_handler = logging.FileHandler('error.log')
+f_handler.setLevel(logging.ERROR)
+f_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(filename)s[:%(lineno)d] - %(message)s"))
+
+logger.addHandler(rf_handler)
+logger.addHandler(f_handler)
+
+logger.debug("debug message")
+logger.info("info message")
+logger.warning("warning message")
+logger.error("error message")
+logger.critical("critical message")
