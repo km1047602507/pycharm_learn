@@ -65,4 +65,13 @@ pycharm调试
     _thread
     threading
     
+    Lock
+        lock = threading.Lock()
+        lock.acquire()
+        lock.release()
+    线程不安全：list set dict
+    线程安全：queue
+#生产者消费者问题
+    一个模型
+        
     

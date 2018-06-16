@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<School>
+    <Teacher>
+        <Name>LiKaiiMing</Name>
+        <Age>18</Age>
+    </Teacher>
+    <Student>
+        <Name>KAIKAI</Name>
+        <Age>20</Age>
+    </Student>
+</School>
